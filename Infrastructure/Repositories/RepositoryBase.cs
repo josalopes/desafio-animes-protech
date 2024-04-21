@@ -16,20 +16,25 @@ namespace Infrastructure.Repositories
 
         public RepositoryBase(RepositoryContext dbContext) => _dbContext = dbContext;
 
-        public void Create(T entity) => _dbContext.Set<T>().Add(entity);
-
-    public void Delete(T entity)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public IQueryable<T> FindAll(bool trackChanges) =>
             !trackChanges ?
               _dbContext.Set<T>()
                 .AsNoTracking() :
             _dbContext.Set<T>();
 
-        public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression, bool trackChanges)
+        public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression, bool trackChanges) =>
+            !trackChanges ?
+              _dbContext.Set<T>()
+                .Where(expression)
+                .AsNoTracking() :
+            _dbContext.Set<T>()
+                .Where(expression);
+
+
+        public void Create(T entity) => _dbContext.Set<T>().Add(entity);
+
+        public void Delete(T entity)
         {
             throw new NotImplementedException();
         }

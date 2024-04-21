@@ -11,7 +11,7 @@ namespace Infrastructure.Repositories
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.ApplyConfiguration(new CompanyConfiguration());
+            modelBuilder.ApplyConfiguration(new AnimeConfiguration());
         }
 
         public DbSet<Anime>? Animes { get; set; }
