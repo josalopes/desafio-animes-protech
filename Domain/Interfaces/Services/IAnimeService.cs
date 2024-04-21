@@ -5,8 +5,12 @@ namespace Domain.Interfaces.Services
 {
     public interface IAnimeService
     {
-        IEnumerable<Anime> GetAllAnimes(bool trackChanges);
-        Anime GetAnime(Guid animeId, bool trackChanges);
-        Anime CreateAnime(Anime anime);
+        IEnumerable<AnimeDto> GetAllAnimes(bool trackChanges);
+        AnimeDto GetAnime(Guid animeId, bool trackChanges);
+        AnimeDto CreateAnime(AnimeForCreationDto anime);
+
+        void UpdateAnime(Guid id, AnimeForUpdateDto anime, bool trackChanges);
+
+        void DeleteAnime(Guid id, bool trackChanges);
     }
 }

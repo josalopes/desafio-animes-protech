@@ -9,5 +9,7 @@ namespace Domain.Interfaces.Repositories
         Anime GetAnime(Guid id, bool trackChanges);
 
         void CreateAnime(Anime anime);
+
+        void DeleteAnime( Anime anime);
     }
 }

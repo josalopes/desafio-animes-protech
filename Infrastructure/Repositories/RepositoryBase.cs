@@ -34,11 +34,8 @@ namespace Infrastructure.Repositories
 
         public void Create(T entity) => _dbContext.Set<T>().Add(entity);
 
-        public void Delete(T entity)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Update(T entity) => _dbContext.Set<T>().Update(entity);
+
+        public void Delete(T entity) => _dbContext.Set<T>().Remove(entity);
     }
 }

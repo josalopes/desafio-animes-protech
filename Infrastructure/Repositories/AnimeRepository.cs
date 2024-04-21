@@ -12,6 +12,11 @@ namespace Infrastructure.Repositories
 
         public void CreateAnime(Anime anime) => Create(anime);
 
+        public void DeleteAnime(Anime anime)
+        {
+            Delete(anime);
+        }
+
         public IEnumerable<Anime> GetAllAnimes(bool trackChanges) =>
             FindAll(trackChanges)
                 .OrderBy(c => c.Nome)
