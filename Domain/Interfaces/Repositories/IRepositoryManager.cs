@@ -4,6 +4,6 @@
     {
         IAnimeRepository Anime { get; }
 
-        void Save();
+        Task SaveAsync();
     }
 }

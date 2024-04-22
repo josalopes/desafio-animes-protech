@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Dto
+namespace Domain.RequestFeatures
 {
-    public record AnimeForCreationDto(string Nome, string Diretor, string Resumo, bool Ativo)
+    public class EmployeeParameters : RequestParameters
     {
     }
 }

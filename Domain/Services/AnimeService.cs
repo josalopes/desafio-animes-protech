@@ -2,6 +2,7 @@
 using Domain.Dto;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
+using Domain.RequestFeatures;
 using Entities.Exceptions;
 using Entities.Models;
 
@@ -24,28 +25,25 @@ namespace Domain.Services
         {
             var animeEntity = _mapper.Map<Anime>(anime);
             _repository.Anime.CreateAnime(animeEntity);
-            _repository.Save();
+            _repository.SaveAsync();
 
             var animeToReturn = _mapper.Map<AnimeDto>(animeEntity);
 
             return animeToReturn;
         }
 
+        
+
         public void DeleteAnime(Guid id, bool trackChanges)
         {
-            var anime = _repository.Anime.GetAnime(id, trackChanges);
-            if (anime == null)
-            {
-                throw new AnimeNotFoundException(id);
-            }
-
+            var anime = _repository.Anime.GetAnime(id, trackChanges) ?? throw new AnimeNotFoundException(id);
             _repository.Anime.DeleteAnime(anime);
-            _repository.Save();
+            _repository.SaveAsync();
         }
 
-        public IEnumerable<AnimeDto> GetAllAnimes(bool trackChanges)
+        public IEnumerable<AnimeDto> GetAllAnimes(EmployeeParameters employeeParameters, bool trackChanges)
         {
-            var animes = _repository.Anime.GetAllAnimes(trackChanges);
+            var animes = _repository.Anime.GetAllAnimes(employeeParameters, trackChanges);
             var animesDto = _mapper.Map<IEnumerable<AnimeDto>>(animes);
 
             return animesDto;
@@ -53,11 +51,7 @@ namespace Domain.Services
 
         public AnimeDto GetAnime(Guid animeId, bool trackChanges)
         {
-            var anime = _repository.Anime.GetAnime(animeId, trackChanges);
-            if (anime == null)
-            {
-                throw new AnimeNotFoundException(animeId);
-            }
+            var anime = _repository.Anime.GetAnime(animeId, trackChanges) ?? throw new AnimeNotFoundException(animeId);
 
             var animeDto = _mapper.Map<AnimeDto>(anime);
             return animeDto;
@@ -65,15 +59,20 @@ namespace Domain.Services
 
         public void UpdateAnime(Guid id, AnimeForUpdateDto animeForUpdate, bool trackChanges)
         {
-            var animeEntity = _repository.Anime.GetAnime(id, trackChanges);
-            
-            if (animeEntity == null)
-            {
-                throw new AnimeNotFoundException(id);
-            }
+            var animeEntity = _repository.Anime.GetAnime(id, trackChanges) ?? throw new AnimeNotFoundException(id);
 
             _mapper.Map(animeForUpdate, animeEntity);
-            _repository.Save();
+            _repository.SaveAsync();
+        }
+
+        public void DeactivateAnime(Guid id, bool trackChanges)
+        {
+            var animeEntity = _repository.Anime.GetAnime(id, trackChanges) ?? throw new AnimeNotFoundException(id);
+
+            //animeEntity.Ativo = false;
+            
+           // UpdateAnime(animeEntity.Id, animeEntity, true);
+
         }
     }
 }
