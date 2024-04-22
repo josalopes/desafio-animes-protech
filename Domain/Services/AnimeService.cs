@@ -41,9 +41,9 @@ namespace Domain.Services
             _repository.SaveAsync();
         }
 
-        public IEnumerable<AnimeDto> GetAllAnimes(EmployeeParameters employeeParameters, bool trackChanges)
+        public IEnumerable<AnimeDto> GetAllAnimes(AnimeParameters animeParameters, bool trackChanges)
         {
-            var animes = _repository.Anime.GetAllAnimes(employeeParameters, trackChanges);
+            var animes = _repository.Anime.GetAllAnimes(animeParameters, trackChanges);
             var animesDto = _mapper.Map<IEnumerable<AnimeDto>>(animes);
 
             return animesDto;

@@ -18,10 +18,10 @@ namespace Infrastructure.Repositories
             Delete(anime);
         }
 
-        public IEnumerable<Anime> GetAllAnimes(EmployeeParameters employeeParameters, bool trackChanges) => FindAll(trackChanges)
+        public IEnumerable<Anime> GetAllAnimes(AnimeParameters animeParameters, bool trackChanges) => FindAll(trackChanges)
                 .OrderBy(c => c.Nome)
-                .Skip((employeeParameters.PageNumber - 1) * employeeParameters.PageSize)
-                .Take(employeeParameters.PageSize)
+                .Skip((animeParameters.PageNumber - 1) * animeParameters.PageSize)
+                .Take(animeParameters.PageSize)
                 .ToList();
 
         public Anime GetAnime(Guid animeId, bool trackChanges)
