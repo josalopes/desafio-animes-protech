@@ -13,6 +13,8 @@ namespace Domain.Interfaces.Repositories
 
         PagedList<Anime> GetAnimesByDirector(AnimeParameters animeParameters, string searchItem);
 
+        PagedList<Anime> GetAnimesByWordInSummary(AnimeParameters animeParameters, string searchItem);
+
         Anime GetAnime(Guid id, bool trackChanges);
 
         void CreateAnime(Anime anime);

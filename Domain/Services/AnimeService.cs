@@ -53,13 +53,7 @@ namespace Domain.Services
             return (animes: animesDto, metadata: animes.Metadata);
         }
 
-        public (IEnumerable<AnimeDto> animes, Metadata metadata) GetAnimesByName(AnimeParameters animeParameters, string searchItems)
-        {
-            var animes = _repository.Anime.GetAnimesByName(animeParameters, searchItems);
-            var animesDto = _mapper.Map<IEnumerable<AnimeDto>>(animes);
-
-            return (animes: animesDto, metadata: animes.Metadata);
-        }
+        
 
         public AnimeDto GetAnime(Guid animeId, bool trackChanges)
         {
@@ -77,16 +71,28 @@ namespace Domain.Services
             _repository.SaveAsync();
         }
 
-        public void DeactivateAnime(Guid id, bool trackChanges)
+        public (IEnumerable<AnimeDto> animes, Metadata metadata) GetAnimesByName(AnimeParameters animeParameters, string searchItems)
         {
-            var animeEntity = _repository.Anime.GetAnime(id, trackChanges) ?? throw new AnimeNotFoundException(id);
+            var animes = _repository.Anime.GetAnimesByName(animeParameters, searchItems);
+            var animesDto = _mapper.Map<IEnumerable<AnimeDto>>(animes);
 
-            //animeEntity.Ativo = false;
-            
-           // UpdateAnime(animeEntity.Id, animeEntity, true);
-
+            return (animes: animesDto, metadata: animes.Metadata);
         }
 
-        
+        public (IEnumerable<AnimeDto> animes, Metadata metadata) GetAnimesByDirector(AnimeParameters animeParameters, string searchItems)
+        {
+            var animes = _repository.Anime.GetAnimesByDirector(animeParameters, searchItems);
+            var animesDto = _mapper.Map<IEnumerable<AnimeDto>>(animes);
+
+            return (animes: animesDto, metadata: animes.Metadata);
+        }
+
+        public (IEnumerable<AnimeDto> animes, Metadata metadata) GetAnimesByWordInSummary(AnimeParameters animeParameters, string searchItems)
+        {
+            var animes = _repository.Anime.GetAnimesByWordInSummary(animeParameters, searchItems);
+            var animesDto = _mapper.Map<IEnumerable<AnimeDto>>(animes);
+
+            return (animes: animesDto, metadata: animes.Metadata);
+        }
     }
 }

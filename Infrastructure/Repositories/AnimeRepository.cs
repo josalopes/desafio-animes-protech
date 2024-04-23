@@ -38,23 +38,34 @@ namespace Infrastructure.Repositories
             .SingleOrDefault();
         }
 
-        public IEnumerable<Anime> GetAllAnimesByName(string searchItem)
-        {
-            IEnumerable<Anime> animes = FindByCondition(c => c.Nome.Contains(searchItem), false)
-                .OrderBy(c => c.Nome);
-
-            return animes;
-        }
         public PagedList<Anime> GetAnimesByName(AnimeParameters animeParameters, string searchItem)
         {
+            IEnumerable<Anime> animes = FindByCondition(c => c.Nome.ToLower().Contains(searchItem.ToLower()), false)
+                .OrderBy(c => c.Nome);
+
             return PagedList<Anime>
-                .ToPagedList(GetAllAnimesByName(searchItem), animeParameters.PageNumber,
+                .ToPagedList(animes, animeParameters.PageNumber,
                 animeParameters.PageSize);
         }
 
         public PagedList<Anime> GetAnimesByDirector(AnimeParameters animeParameters, string searchItem)
         {
-            throw new NotImplementedException();
+            IEnumerable<Anime> animes = FindByCondition(c => c.Diretor.ToLower().Contains(searchItem.ToLower()), false)
+                .OrderBy(c => c.Nome);
+
+            return PagedList<Anime>
+                .ToPagedList(animes, animeParameters.PageNumber,
+                animeParameters.PageSize);
+        }
+
+        public PagedList<Anime> GetAnimesByWordInSummary(AnimeParameters animeParameters, string searchItem)
+        {
+            IEnumerable<Anime> animes = FindByCondition(c => c.Resumo.ToLower().Contains(searchItem.ToLower()), false)
+                .OrderBy(c => c.Nome);
+
+            return PagedList<Anime>
+                .ToPagedList(animes, animeParameters.PageNumber,
+                animeParameters.PageSize);
         }
     }
 }
