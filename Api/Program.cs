@@ -24,7 +24,9 @@ namespace Api
             builder.Services.ConfigureSqlContext(builder.Configuration);
             builder.Services.AddAutoMapper(typeof(Program));
             builder.Services.AddControllers();
-            
+            builder.Services.AddAuthentication();
+            builder.Services.ConfigureIdentity();
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             
@@ -49,6 +51,7 @@ namespace Api
             
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllers();

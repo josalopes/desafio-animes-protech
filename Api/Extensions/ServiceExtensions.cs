@@ -6,6 +6,8 @@ using Infrastructure.Repositories;
 using LoggerService;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using Entities.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Api.Extensions
 {
@@ -61,6 +63,21 @@ namespace Api.Extensions
                 s.IncludeXmlComments(xmlPath);
             });
 
+        }
+
+        public static void ConfigureIdentity(this IServiceCollection services)
+        {
+            var builder = services.AddIdentity<User, IdentityRole>(o =>
+            {
+                o.Password.RequireDigit = true;
+                o.Password.RequireLowercase = false;
+                o.Password.RequireUppercase = false;
+                o.Password.RequireNonAlphanumeric = false;
+                o.Password.RequiredLength = 10;
+                o.User.RequireUniqueEmail = true;
+            })
+            .AddEntityFrameworkStores<RepositoryContext>()
+            .AddDefaultTokenProviders();
         }
     }
 }

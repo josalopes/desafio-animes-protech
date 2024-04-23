@@ -3,6 +3,7 @@ using System;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Api.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20240423193535_CreatingIdentityTables")]
+    partial class CreatingIdentityTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.4");
@@ -48,7 +51,7 @@ namespace Api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("19a0ff9a-5001-407f-89c6-d8bc2da18667"),
+                            Id = new Guid("0c56e9a4-b2ca-494f-b516-2324358b4a46"),
                             Ativo = true,
                             Diretor = "Hayao Miyazaki",
                             Nome = "A Viagem de Chihiro",
@@ -56,7 +59,7 @@ namespace Api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("447bd4ee-4d20-4ae5-bc48-3509b0a46689"),
+                            Id = new Guid("93caf2b3-2f81-4af8-9434-d76faf4a2b44"),
                             Ativo = true,
                             Diretor = "Isao Takahata",
                             Nome = "Túmulo dos Vagalumes",
@@ -64,7 +67,7 @@ namespace Api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("05aaaed7-cb30-4143-b3bc-c779dd155cb6"),
+                            Id = new Guid("d990ca22-cca9-425d-a421-89e05e8cf9ce"),
                             Ativo = true,
                             Diretor = "Makoto Shinkai",
                             Nome = "Kimi No Na Wa",
@@ -72,7 +75,7 @@ namespace Api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("04aed267-c000-4a34-a52c-9bf280ecfae4"),
+                            Id = new Guid("ac7feddc-55cb-4c81-a072-beade57302db"),
                             Ativo = true,
                             Diretor = "Junichi Satô, Tomotaka Shibayama",
                             Nome = "Olhos de Gato",
@@ -80,7 +83,7 @@ namespace Api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("bb1eeda7-f245-40e5-bb6f-402665f9eba0"),
+                            Id = new Guid("acdee384-ddfd-4cae-ad35-b6545ff2b787"),
                             Ativo = true,
                             Diretor = "Hayao Miyazaki",
                             Nome = "Princesa Mononoke",
@@ -88,7 +91,7 @@ namespace Api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("fd173c0e-78e2-4840-b122-e7494c97977f"),
+                            Id = new Guid("25bf7ae6-5280-4637-b93a-d4bc44f1f6f0"),
                             Ativo = true,
                             Diretor = "Hayao Miyazaki",
                             Nome = "Meu Amigo Totoro",
@@ -96,7 +99,7 @@ namespace Api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("802f6c7d-8c18-432f-a477-f7f506097719"),
+                            Id = new Guid("9280d4f9-04e6-4e93-9f7f-a685ecaa1f15"),
                             Ativo = true,
                             Diretor = "Naoko Yamada",
                             Nome = "A Voz do Silêncio",
@@ -104,7 +107,7 @@ namespace Api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("eafb1a0d-18aa-46d3-a67a-598dacc93482"),
+                            Id = new Guid("329db3a4-2768-4ff8-aabd-4534098f2931"),
                             Ativo = true,
                             Diretor = "Hayao Miyazaki",
                             Nome = "O Castelo Animado",
@@ -112,7 +115,7 @@ namespace Api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("f5d64466-c3ea-4d82-affa-b9df08718598"),
+                            Id = new Guid("d49256d1-0e7c-4d97-a19e-4536ceb3d7d0"),
                             Ativo = true,
                             Diretor = "Mamoru Hosoda",
                             Nome = "Crianças Lobo",
@@ -120,7 +123,7 @@ namespace Api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("db77e8c1-5ff8-4dc3-92c7-6b4c8341bae2"),
+                            Id = new Guid("b4e485d9-8da0-445c-8120-3eaacee8c479"),
                             Ativo = true,
                             Diretor = "Isao Takahata",
                             Nome = "O Conto da Princesa Kaguya",
@@ -128,7 +131,7 @@ namespace Api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("95950f33-c2ac-4748-bfa4-0be29f9bae47"),
+                            Id = new Guid("ebd578fc-6d1b-4c7a-ae0c-dda464b87ce5"),
                             Ativo = true,
                             Diretor = "Mamoru Oshii",
                             Nome = "O Fantasma do Futuro",
@@ -136,7 +139,7 @@ namespace Api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("53eb4736-e479-49ef-9f4c-a784b92a10dd"),
+                            Id = new Guid("6b6babc7-93ce-4eff-b4d5-2d0339fe24de"),
                             Ativo = true,
                             Diretor = "Katsuhiro Otomo",
                             Nome = "Akira",
@@ -144,7 +147,7 @@ namespace Api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("1ba443c6-92bc-4760-b439-71a637e6cfec"),
+                            Id = new Guid("4b139d08-3763-4b1e-8322-f8fbffbf8636"),
                             Ativo = true,
                             Diretor = "Tatsuya Nagamine",
                             Nome = "Dragon Ball Super: Broly",
@@ -152,7 +155,7 @@ namespace Api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("c61e8819-0743-4797-b519-963f392a1e03"),
+                            Id = new Guid("d15f4bef-2f95-4ca8-a31b-a4668be4d2a1"),
                             Ativo = true,
                             Diretor = "Mamoru Hosoda",
                             Nome = "A Garota que Conquistou o Tempo",
@@ -160,7 +163,7 @@ namespace Api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("c0eeae73-12c1-44e8-89d0-bf7cd563606c"),
+                            Id = new Guid("22417f7f-3bf4-4fd8-8cd7-63c879502589"),
                             Ativo = true,
                             Diretor = "Hayao Miyazaki",
                             Nome = "Vidas ao Vento",
@@ -168,7 +171,7 @@ namespace Api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("0f2249b6-c358-4000-9a37-a5bafde8d662"),
+                            Id = new Guid("d138c3c4-c66a-43a2-b1aa-24ce3685ccfc"),
                             Ativo = true,
                             Diretor = "Hiromasa Yonebayashi",
                             Nome = "As Memórias de Marnie",
@@ -176,7 +179,7 @@ namespace Api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("d31a32a6-9178-4ec2-98c4-978c33b9bf48"),
+                            Id = new Guid("acd759be-2280-45a1-8c17-47325bc52478"),
                             Ativo = true,
                             Diretor = "Hayao Miyazaki",
                             Nome = "Ponyo: Uma Amizade que Veio do Mar",
@@ -184,7 +187,7 @@ namespace Api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("feab8ba9-61d8-454f-809f-ea121c7fe02b"),
+                            Id = new Guid("394d76ab-76c0-45c4-9662-4533130f45d1"),
                             Ativo = true,
                             Diretor = "Satoshi Kon",
                             Nome = "Paprika",
@@ -192,7 +195,7 @@ namespace Api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("615e640c-eb6d-4df1-8f29-39d4f2e2d5b9"),
+                            Id = new Guid("4b733caf-48bb-4e91-ad7b-82841b3fc9d9"),
                             Ativo = true,
                             Diretor = "Makoto Shinkai",
                             Nome = "Cinco Centímetros por Segundo",
@@ -200,7 +203,7 @@ namespace Api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("0417e93c-ae97-4138-9065-6ead76fd1d74"),
+                            Id = new Guid("918ff2ba-d032-44cf-a8e8-e9952337f529"),
                             Ativo = true,
                             Diretor = "Makoto Shinkai",
                             Nome = "O Jardim das Palavras",
@@ -208,7 +211,7 @@ namespace Api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("e7a6bb90-c3ad-47af-bcbc-6edb70f161cd"),
+                            Id = new Guid("b56bd4e0-f201-4bc5-89f1-e2e580bce8e3"),
                             Ativo = true,
                             Diretor = "Tatsuyuki Nagai",
                             Nome = "O Hino do Coração",
@@ -216,7 +219,7 @@ namespace Api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("938e10aa-3f6f-43c3-a261-b33e00f20554"),
+                            Id = new Guid("85b86cd7-61ac-469d-b330-0dabd0ed7c95"),
                             Ativo = true,
                             Diretor = "Goro Miyazaki",
                             Nome = "Da Colina Kokuriko",
@@ -224,7 +227,7 @@ namespace Api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("7f549875-2508-4ff7-ae28-fe84e646086d"),
+                            Id = new Guid("3ae71b3e-c737-409b-a7e8-e939fd8336e2"),
                             Ativo = true,
                             Diretor = "Xuan Liang, Chun Zhang",
                             Nome = "Big Fish& Begonia",
@@ -328,20 +331,6 @@ namespace Api.Migrations
                         .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "90921b36-20bb-4de0-83ba-feb93c8aef84",
-                            Name = "Manager",
-                            NormalizedName = "MANAGER"
-                        },
-                        new
-                        {
-                            Id = "4496655c-5003-434d-a8df-5b2e92e40ab9",
-                            Name = "Administrator",
-                            NormalizedName = "ADMINISTRATOR"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
