@@ -5,6 +5,7 @@ using Domain.Interfaces.Services;
 using Domain.RequestFeatures;
 using Entities.Exceptions;
 using Entities.Models;
+using Entities.Models.Builders;
 
 namespace Domain.Services
 {
@@ -32,11 +33,16 @@ namespace Domain.Services
             return animeToReturn;
         }
 
-        public void DeleteAnime(Guid id, bool trackChanges)
+        public void DeleteAnime(Guid id)
         {
-            var anime = _repository.Anime.GetAnime(id, trackChanges) ?? throw new AnimeNotFoundException(id);
-            _repository.Anime.DeleteAnime(anime);
-            _repository.SaveAsync();
+            var anime = _repository.Anime.GetAnime(id, false) ?? throw new AnimeNotFoundException(id);
+
+            var animeForDelete = new AnimeBuilder(anime);
+            animeForDelete.Deactivate();
+
+            var animeForDeleteDto = new AnimeForUpdateDto(anime.Nome, anime.Diretor, anime.Resumo, anime.Ativo);
+
+            UpdateAnime(id, animeForDeleteDto, true);
         }
 
         public (IEnumerable<AnimeDto> animes, Metadata metadata) GetAllAnimes(AnimeParameters animeParameters, bool trackChanges)

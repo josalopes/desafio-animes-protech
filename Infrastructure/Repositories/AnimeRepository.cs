@@ -51,5 +51,10 @@ namespace Infrastructure.Repositories
                 .ToPagedList(GetAllAnimesByName(searchItem), animeParameters.PageNumber,
                 animeParameters.PageSize);
         }
+
+        public PagedList<Anime> GetAnimesByDirector(AnimeParameters animeParameters, string searchItem)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

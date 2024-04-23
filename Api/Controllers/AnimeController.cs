@@ -1,10 +1,8 @@
 ﻿using Domain.Dto;
 using Domain.Interfaces.Services;
 using Domain.RequestFeatures;
-using Entities.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Api.Controllers
 {
@@ -33,8 +31,7 @@ namespace Api.Controllers
             return Ok(pagedResult.animes);
         }
 
-        [HttpGet]
-        [Route("/name")]
+        [HttpGet, Route("name")]
         public IActionResult GetAnimesByName([FromQuery] AnimeParameters animeParameters, [FromQuery] string name)
         {
             var pagedResult = _service.AnimeService.GetAnimesByName(animeParameters, name);
@@ -85,7 +82,7 @@ namespace Api.Controllers
         [HttpDelete("{id:guid}")]
         public IActionResult DeleteAnime(Guid id)
         {
-            _service.AnimeService.DeleteAnime(id, trackChanges: false);
+            _service.AnimeService.DeleteAnime(id);
 
             _logger.LogInfo($"Anime {id} excluído com sucesso");
 

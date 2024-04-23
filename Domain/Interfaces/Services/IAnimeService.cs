@@ -1,6 +1,5 @@
 ﻿using Domain.Dto;
 using Domain.RequestFeatures;
-using Entities.Models;
 
 namespace Domain.Interfaces.Services
 {
@@ -14,7 +13,7 @@ namespace Domain.Interfaces.Services
 
         void UpdateAnime(Guid id, AnimeForUpdateDto anime, bool trackChanges);
 
-        void DeleteAnime(Guid id, bool trackChanges);
+        void DeleteAnime(Guid id);
 
         void DeactivateAnime(Guid id, bool trackChanges);
     }
