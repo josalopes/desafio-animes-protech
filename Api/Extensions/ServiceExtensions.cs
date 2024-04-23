@@ -4,6 +4,8 @@ using Domain.Interfaces.Services;
 using Domain.Services;
 using Infrastructure.Repositories;
 using LoggerService;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 namespace Api.Extensions
 {
@@ -31,5 +33,34 @@ namespace Api.Extensions
         public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration) =>
             services.AddDbContext<RepositoryContext>(opts =>
                 opts.UseSqlite(configuration.GetConnectionString("SqliteConnectionString")));
+
+        public static void ConfigureSwagger(this IServiceCollection services)
+        {
+            services.AddSwaggerGen(s =>
+            {
+                s.SwaggerDoc("v1", new OpenApiInfo 
+                { 
+                    Title = "Desafio Animes Protech API", 
+                    Version = "v1",
+                    Description = "Animes API by Protech",
+                    TermsOfService = new Uri("https://example.com/terms"),
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Francisco Josafá Lopes",
+                        Email = "josafa.lopes@gmail.com"
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "Animes API",
+                        Url = new Uri("https://example.com/license")
+                    }
+                });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                s.IncludeXmlComments(xmlPath);
+            });
+
+        }
     }
 }

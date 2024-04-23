@@ -1,8 +1,9 @@
 
 using Api.Extensions;
 using Domain.Interfaces.Services;
-using Domain.Interfaces.Repositories;
 using NLog;
+using System.Reflection;
+using Swashbuckle.Swagger;
 
 namespace Api
 {
@@ -19,13 +20,14 @@ namespace Api
             builder.Services.ConfigureLoggerService();
             builder.Services.ConfigureRepositoryManager();
             builder.Services.ConfigureServiceManager();
+            builder.Services.ConfigureSwagger();
             builder.Services.ConfigureSqlContext(builder.Configuration);
             builder.Services.AddAutoMapper(typeof(Program));
             builder.Services.AddControllers();
             
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            
 
             var app = builder.Build();
 
@@ -37,7 +39,10 @@ namespace Api
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseSwaggerUI(s =>
+                {
+                    s.SwaggerEndpoint("/swagger/v1/swagger.json", "Desafio Animes Protech API");
+                });
             }
 
             app.UseCors("CorsPolicy");

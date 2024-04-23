@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Api</name>
+    </assembly>
+    <members>
+        <member name="M:Api.Controllers.AnimeController.GetAnimes(Domain.RequestFeatures.AnimeParameters)">
+            <summary>
+            Obtem uma lista de todos os Animes
+            </summary>
+            <param name="animeParameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AnimeController.GetAnimesByName(Domain.RequestFeatures.AnimeParameters,System.String)">
+            <summary>
+            Retorna uma lista de Animes filtrada por um valor da propriedde Nome
+            </summary>
+            <param name="animeParameters"></param>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AnimeController.GetAnimesByDirector(Domain.RequestFeatures.AnimeParameters,System.String)">
+            <summary>
+            Retorna uma lista de Animes filtrada por um valor da propriedde Diretor
+            </summary>
+            <param name="animeParameters"></param>
+            <param name="director"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AnimeController.GetAnimesByWordInSummary(Domain.RequestFeatures.AnimeParameters,System.String)">
+            <summary>
+            Retorna uma lista de Animes filtrada pelo valor de uma palavra contida na propriedde Resumo
+            </summary>
+            <param name="animeParameters"></param>
+            <param name="word"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AnimeController.GetAnime(System.Guid)">
+            <summary>
+            Obtem um Anime pelo Id
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AnimeController.CreateAnime(Domain.Dto.AnimeForCreationDto)">
+             <summary>
+             Cria um novo Anime.
+             </summary>
+             <remarks>
+             Exemplo:
+            
+                 POST api/animes
+                 {
+                    "nome": "Kimi No Na Wa",
+                    "diretor": "Makoto Shinkai",
+                    "resumo": "Vencedor de vários prêmios, dentre os quais o Japan Awards, Your Name conta a história de Mitsuha, uma garota que vive no campo e deseja conhecer Tóquio, e Taki, um garoto qu vive na capital. Certo dia, Mitsuha leva seu desejo a um templo religioso. E é atendida. Ela acorda no corpo de Taki, e ele no corpo dela!",
+                    "ativo": true
+                 }
+            
+             </remarks>
+             <param name="anime"></param>
+             <returns>Um novo Anime criado</returns>
+             <response code="201">Retorna o novo item criado</response>
+             <response code="400">Se o item não for criado</response>      
+             <response code="422">Se o model estiver inválido</response>      
+        </member>
+        <member name="M:Api.Controllers.AnimeController.UpdateAnime(System.Guid,Domain.Dto.AnimeForUpdateDto)">
+            <summary>
+            Atualiza um Anime pelo Id e com os valores a serem atualizados
+            </summary>
+            <param name="id"></param>
+            <param name="anime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AnimeController.DeleteAnime(System.Guid)">
+            <summary>
+            Efetua a exclusão lógica de um Anime (Ativo = false)
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Api.Migrations.DatabaseCreation">
+            <inheritdoc />
+        </member>
+        <member name="M:Api.Migrations.DatabaseCreation.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Api.Migrations.DatabaseCreation.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Api.Migrations.DatabaseCreation.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Api.Migrations.InitialData">
+            <inheritdoc />
+        </member>
+        <member name="M:Api.Migrations.InitialData.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Api.Migrations.InitialData.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Api.Migrations.InitialData.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

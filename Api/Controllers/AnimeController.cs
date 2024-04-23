@@ -8,6 +8,7 @@ namespace Api.Controllers
 {
     [Route("api/animes")]
     [ApiController]
+    [ApiExplorerSettings(GroupName = "v1")]
     public class AnimeController : ControllerBase
     {
         private readonly IServiceManager _service;
@@ -18,7 +19,11 @@ namespace Api.Controllers
             _service = service;
             _logger = logger;
         }
-
+        /// <summary>
+        /// Obtem uma lista de todos os Animes
+        /// </summary>
+        /// <param name="animeParameters"></param>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult GetAnimes([FromQuery] AnimeParameters animeParameters)
         {
@@ -30,6 +35,12 @@ namespace Api.Controllers
             return Ok(pagedResult.animes);
         }
 
+        /// <summary>
+        /// Retorna uma lista de Animes filtrada por um valor da propriedde Nome
+        /// </summary>
+        /// <param name="animeParameters"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         [HttpGet, Route("name")]
         public IActionResult GetAnimesByName([FromQuery] AnimeParameters animeParameters, [FromQuery] string name)
         {
@@ -41,6 +52,12 @@ namespace Api.Controllers
             return Ok(pagedResult.animes);
         }
 
+        /// <summary>
+        /// Retorna uma lista de Animes filtrada por um valor da propriedde Diretor
+        /// </summary>
+        /// <param name="animeParameters"></param>
+        /// <param name="director"></param>
+        /// <returns></returns>
         [HttpGet, Route("director")]
         public IActionResult GetAnimesByDirector([FromQuery] AnimeParameters animeParameters, [FromQuery] string director)
         {
@@ -52,6 +69,12 @@ namespace Api.Controllers
             return Ok(pagedResult.animes);
         }
 
+        /// <summary>
+        /// Retorna uma lista de Animes filtrada pelo valor de uma palavra contida na propriedde Resumo
+        /// </summary>
+        /// <param name="animeParameters"></param>
+        /// <param name="word"></param>
+        /// <returns></returns>
         [HttpGet, Route("summary")]
         public IActionResult GetAnimesByWordInSummary([FromQuery] AnimeParameters animeParameters, [FromQuery] string word)
         {
@@ -63,6 +86,11 @@ namespace Api.Controllers
             return Ok(pagedResult.animes);
         }
 
+        /// <summary>
+        /// Obtem um Anime pelo Id
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("{Id:Guid}", Name = "AnimeById")]
         public IActionResult GetAnime(Guid Id)
@@ -73,7 +101,31 @@ namespace Api.Controllers
             return Ok(anime);
         }
 
+        // POST api/todo
+        /// <summary>
+        /// Cria um novo Anime.
+        /// </summary>
+        /// <remarks>
+        /// Exemplo:
+        ///
+        ///     POST api/animes
+        ///     {
+        ///        "nome": "Kimi No Na Wa",
+        ///        "diretor": "Makoto Shinkai",
+        ///        "resumo": "Vencedor de vários prêmios, dentre os quais o Japan Awards, Your Name conta a história de Mitsuha, uma garota que vive no campo e deseja conhecer Tóquio, e Taki, um garoto qu vive na capital. Certo dia, Mitsuha leva seu desejo a um templo religioso. E é atendida. Ela acorda no corpo de Taki, e ele no corpo dela!",
+        ///        "ativo": true
+        ///     }
+        ///
+        /// </remarks>
+        /// <param name="anime"></param>
+        /// <returns>Um novo Anime criado</returns>
+        /// <response code="201">Retorna o novo item criado</response>
+        /// <response code="400">Se o item não for criado</response>      
+        /// <response code="422">Se o model estiver inválido</response>      
         [HttpPost]
+        [ProducesResponseType(201)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(422)]
         public IActionResult CreateAnime([FromBody] AnimeForCreationDto anime)
         {
             var createdAnime = _service.AnimeService.CreateAnime(anime);
@@ -82,6 +134,12 @@ namespace Api.Controllers
             return CreatedAtRoute("AnimeById", new { id = createdAnime.Id }, createdAnime);
         }
 
+        /// <summary>
+        /// Atualiza um Anime pelo Id e com os valores a serem atualizados
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="anime"></param>
+        /// <returns></returns>
         [HttpPut("{id:guid}")]
         public IActionResult UpdateAnime(Guid id, [FromBody] AnimeForUpdateDto anime)
         {
@@ -96,6 +154,11 @@ namespace Api.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Efetua a exclusão lógica de um Anime (Ativo = false)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id:guid}")]
         public IActionResult DeleteAnime(Guid id)
         {
