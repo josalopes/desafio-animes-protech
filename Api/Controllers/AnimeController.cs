@@ -3,6 +3,7 @@ using Domain.Interfaces.Services;
 using Domain.RequestFeatures;
 using Entities.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Api.Controllers
@@ -23,11 +24,26 @@ namespace Api.Controllers
         [HttpGet]
         public IActionResult GetAnimes([FromQuery] AnimeParameters animeParameters)
         {
-            var animes = _service.AnimeService.GetAllAnimes(animeParameters, trackChanges: false);
+            var pagedResult = _service.AnimeService.GetAllAnimes(animeParameters, trackChanges: false);
+
+            Response.Headers.Append("X-Pagination", JsonSerializer.Serialize(pagedResult.metadata));
 
             _logger.LogInfo("Busca de todos Animes realizada com sucesso");
 
-            return Ok(animes);
+            return Ok(pagedResult.animes);
+        }
+
+        [HttpGet]
+        [Route("/name")]
+        public IActionResult GetAnimesByName([FromQuery] AnimeParameters animeParameters, [FromQuery] string name)
+        {
+            var pagedResult = _service.AnimeService.GetAnimesByName(animeParameters, name);
+
+            Response.Headers.Append("X-Pagination", JsonSerializer.Serialize(pagedResult.metadata));
+
+            _logger.LogInfo("Busca de todos Animes filtrados por Nome realizada com sucesso");
+
+            return Ok(pagedResult.animes);
         }
 
         [HttpGet]

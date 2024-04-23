@@ -7,8 +7,10 @@ namespace Infrastructure.Repositories
 
     internal class AnimeRepository : RepositoryBase<Anime>, IAnimeRepository
     {
+        private readonly RepositoryContext _context;
         public AnimeRepository(RepositoryContext repositoryContext) : base(repositoryContext)
         {
+            _context = repositoryContext;
         }
 
         public void CreateAnime(Anime anime) => Create(anime);
@@ -17,12 +19,6 @@ namespace Infrastructure.Repositories
         {
             Delete(anime);
         }
-
-        //public IEnumerable<Anime> GetAllAnimes(AnimeParameters animeParameters, bool trackChanges) => FindAll(trackChanges)
-        //        .OrderBy(c => c.Nome)
-        //        .Skip((animeParameters.PageNumber - 1) * animeParameters.PageSize)
-        //        .Take(animeParameters.PageSize)
-        //        .ToList();
 
         public IEnumerable<Anime> GetAllAnimes(bool trackChanges)
         {
@@ -42,6 +38,18 @@ namespace Infrastructure.Repositories
             .SingleOrDefault();
         }
 
-        
+        public IEnumerable<Anime> GetAllAnimesByName(string searchItem)
+        {
+            IEnumerable<Anime> animes = FindByCondition(c => c.Nome.Contains(searchItem), false)
+                .OrderBy(c => c.Nome);
+
+            return animes;
+        }
+        public PagedList<Anime> GetAnimesByName(AnimeParameters animeParameters, string searchItem)
+        {
+            return PagedList<Anime>
+                .ToPagedList(GetAllAnimesByName(searchItem), animeParameters.PageNumber,
+                animeParameters.PageSize);
+        }
     }
 }

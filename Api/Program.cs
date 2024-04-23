@@ -15,6 +15,7 @@ namespace Api
             LogManager.Setup().LoadConfigurationFromFile(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
 
             // Add services to the container.
+            builder.Services.ConfigureCors();
             builder.Services.ConfigureLoggerService();
             builder.Services.ConfigureRepositoryManager();
             builder.Services.ConfigureServiceManager();
@@ -39,6 +40,8 @@ namespace Api
                 app.UseSwaggerUI();
             }
 
+            app.UseCors("CorsPolicy");
+            
             app.UseHttpsRedirection();
 
             app.UseAuthorization();

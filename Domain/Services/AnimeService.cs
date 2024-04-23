@@ -39,12 +39,20 @@ namespace Domain.Services
             _repository.SaveAsync();
         }
 
-        public IEnumerable<AnimeDto> GetAllAnimes(AnimeParameters animeParameters, bool trackChanges)
+        public (IEnumerable<AnimeDto> animes, Metadata metadata) GetAllAnimes(AnimeParameters animeParameters, bool trackChanges)
         {
             var animes = _repository.Anime.GetAnimes(animeParameters, trackChanges);
             var animesDto = _mapper.Map<IEnumerable<AnimeDto>>(animes);
 
-            return animesDto;
+            return (animes: animesDto, metadata: animes.Metadata);
+        }
+
+        public (IEnumerable<AnimeDto> animes, Metadata metadata) GetAnimesByName(AnimeParameters animeParameters, string searchItems)
+        {
+            var animes = _repository.Anime.GetAnimesByName(animeParameters, searchItems);
+            var animesDto = _mapper.Map<IEnumerable<AnimeDto>>(animes);
+
+            return (animes: animesDto, metadata: animes.Metadata);
         }
 
         public AnimeDto GetAnime(Guid animeId, bool trackChanges)
@@ -72,5 +80,7 @@ namespace Domain.Services
            // UpdateAnime(animeEntity.Id, animeEntity, true);
 
         }
+
+        
     }
 }

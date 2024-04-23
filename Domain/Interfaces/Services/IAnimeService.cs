@@ -6,7 +6,9 @@ namespace Domain.Interfaces.Services
 {
     public interface IAnimeService
     {
-        IEnumerable<AnimeDto> GetAllAnimes(AnimeParameters animeParameters, bool trackChanges);
+        (IEnumerable<AnimeDto> animes, Metadata metadata) GetAllAnimes(AnimeParameters animeParameters, bool trackChanges);
+
+        (IEnumerable<AnimeDto> animes, Metadata metadata) GetAnimesByName(AnimeParameters animeParameters, string searchItems);
         AnimeDto GetAnime(Guid animeId, bool trackChanges);
         AnimeDto CreateAnime(AnimeForCreationDto anime);
 

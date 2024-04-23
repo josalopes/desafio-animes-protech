@@ -9,10 +9,12 @@ namespace Domain.Interfaces.Repositories
 
         PagedList<Anime> GetAnimes(AnimeParameters animeParameters, bool trackChanges);
 
+        PagedList<Anime> GetAnimesByName(AnimeParameters animeParameters, string searchItem);
+
         Anime GetAnime(Guid id, bool trackChanges);
 
         void CreateAnime(Anime anime);
 
-        void DeleteAnime( Anime anime);
+        void DeleteAnime(Anime anime);
     }
 }
