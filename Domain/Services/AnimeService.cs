@@ -32,8 +32,6 @@ namespace Domain.Services
             return animeToReturn;
         }
 
-        
-
         public void DeleteAnime(Guid id, bool trackChanges)
         {
             var anime = _repository.Anime.GetAnime(id, trackChanges) ?? throw new AnimeNotFoundException(id);
@@ -43,7 +41,7 @@ namespace Domain.Services
 
         public IEnumerable<AnimeDto> GetAllAnimes(AnimeParameters animeParameters, bool trackChanges)
         {
-            var animes = _repository.Anime.GetAllAnimes(animeParameters, trackChanges);
+            var animes = _repository.Anime.GetAnimes(animeParameters, trackChanges);
             var animesDto = _mapper.Map<IEnumerable<AnimeDto>>(animes);
 
             return animesDto;

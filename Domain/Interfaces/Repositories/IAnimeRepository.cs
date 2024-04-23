@@ -5,7 +5,9 @@ namespace Domain.Interfaces.Repositories
 {
     public interface IAnimeRepository
     {
-        IEnumerable<Anime> GetAllAnimes(AnimeParameters animeParameters, bool trackChanges);
+        IEnumerable<Anime> GetAllAnimes(bool trackChanges);
+
+        PagedList<Anime> GetAnimes(AnimeParameters animeParameters, bool trackChanges);
 
         Anime GetAnime(Guid id, bool trackChanges);
 
