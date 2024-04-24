@@ -1,9 +1,10 @@
-﻿using Domain.Dto;
-using Domain.Interfaces.Services;
-using Domain.RequestFeatures;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
+
+using Domain.Dto;
+using Domain.Interfaces.Services;
+using Domain.RequestFeatures;
 
 namespace Api.Controllers
 {
@@ -20,6 +21,7 @@ namespace Api.Controllers
             _service = service;
             _logger = logger;
         }
+
         /// <summary>
         /// Obtem uma lista de todos os Animes
         /// </summary>
@@ -38,12 +40,29 @@ namespace Api.Controllers
         }
 
         /// <summary>
+        /// Obtem um Anime pelo Id
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Authorize]
+        [Route("{Id:Guid}", Name = "AnimeById")]
+        public IActionResult GetAnime(Guid Id)
+        {
+            var anime = _service.AnimeService.GetAnime(Id, trackChanges: false);
+            _logger.LogInfo($"Busca do Anime {Id} realizada com sucesso");
+
+            return Ok(anime);
+        }
+
+        /// <summary>
         /// Retorna uma lista de Animes filtrada por um valor da propriedde Nome
         /// </summary>
         /// <param name="animeParameters"></param>
         /// <param name="name"></param>
         /// <returns></returns>
         [HttpGet, Route("name")]
+        [Authorize]
         public IActionResult GetAnimesByName([FromQuery] AnimeParameters animeParameters, [FromQuery] string name)
         {
             var pagedResult = _service.AnimeService.GetAnimesByName(animeParameters, name);
@@ -61,6 +80,7 @@ namespace Api.Controllers
         /// <param name="director"></param>
         /// <returns></returns>
         [HttpGet, Route("director")]
+        [Authorize]
         public IActionResult GetAnimesByDirector([FromQuery] AnimeParameters animeParameters, [FromQuery] string director)
         {
             var pagedResult = _service.AnimeService.GetAnimesByDirector(animeParameters, director);
@@ -78,6 +98,7 @@ namespace Api.Controllers
         /// <param name="word"></param>
         /// <returns></returns>
         [HttpGet, Route("summary")]
+        [Authorize]
         public IActionResult GetAnimesByWordInSummary([FromQuery] AnimeParameters animeParameters, [FromQuery] string word)
         {
             var pagedResult = _service.AnimeService.GetAnimesByWordInSummary(animeParameters, word);
@@ -86,21 +107,6 @@ namespace Api.Controllers
             _logger.LogInfo("Busca de todos Animes filtrados por palavra no resumo realizada com sucesso");
 
             return Ok(pagedResult.animes);
-        }
-
-        /// <summary>
-        /// Obtem um Anime pelo Id
-        /// </summary>
-        /// <param name="Id"></param>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("{Id:Guid}", Name = "AnimeById")]
-        public IActionResult GetAnime(Guid Id)
-        {
-            var anime = _service.AnimeService.GetAnime(Id, trackChanges: false);
-            _logger.LogInfo($"Busca do Anime {Id} realizada com sucesso");
-
-            return Ok(anime);
         }
 
         // POST api/todo
@@ -125,6 +131,7 @@ namespace Api.Controllers
         /// <response code="400">Se o item não for criado</response>      
         /// <response code="422">Se o model estiver inválido</response>      
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
         [ProducesResponseType(422)]
@@ -143,6 +150,7 @@ namespace Api.Controllers
         /// <param name="anime"></param>
         /// <returns></returns>
         [HttpPut("{id:guid}")]
+        [Authorize]
         public IActionResult UpdateAnime(Guid id, [FromBody] AnimeForUpdateDto anime)
         {
             if (anime == null) 
@@ -162,10 +170,11 @@ namespace Api.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("{id:guid}")]
+        [Authorize(Roles = "Administrator")]
         public IActionResult DeleteAnime(Guid id)
         {
             _service.AnimeService.DeleteAnime(id);
-            _logger.LogInfo($"Anime {id} excluído com sucesso");
+            _logger.LogInfo($"Anime {id} foi desativado com sucesso");
 
             return NoContent();
         }

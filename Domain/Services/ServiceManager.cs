@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
+
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
 using Entities.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
 
 namespace Domain.Services
 {

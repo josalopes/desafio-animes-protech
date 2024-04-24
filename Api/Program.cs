@@ -1,9 +1,8 @@
 
 using Api.Extensions;
-using Domain.Interfaces.Services;
 using NLog;
-using System.Reflection;
-using Swashbuckle.Swagger;
+
+using Domain.Interfaces.Services;
 
 namespace Api
 {

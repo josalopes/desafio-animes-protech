@@ -1,6 +1,7 @@
-﻿using Entities.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+using Entities.Models;
 
 namespace Infrastructure.Repositories
 {

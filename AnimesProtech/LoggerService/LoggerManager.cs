@@ -1,5 +1,6 @@
-﻿using Domain.Interfaces.Services;
-using NLog;
+﻿using NLog;
+
+using Domain.Interfaces.Services;
 
 namespace LoggerService
 {

@@ -1,5 +1,6 @@
-﻿using Domain.Dto;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
+
+using Domain.Dto;
 
 namespace Domain.Interfaces.Services
 {

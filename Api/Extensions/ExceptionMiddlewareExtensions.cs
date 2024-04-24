@@ -1,7 +1,8 @@
-﻿using Domain.Interfaces.Services;
+﻿using Microsoft.AspNetCore.Diagnostics;
+
+using Domain.Interfaces.Services;
 using Entities.ErrorModel;
 using Entities.Exceptions;
-using Microsoft.AspNetCore.Diagnostics;
 
 namespace Api.Extensions
 {

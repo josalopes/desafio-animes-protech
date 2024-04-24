@@ -1,16 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System.Text;
+using System.Reflection;
+
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
 using Domain.Services;
 using Infrastructure.Repositories;
 using LoggerService;
-using Microsoft.OpenApi.Models;
-using System.Reflection;
 using Entities.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 
 namespace Api.Extensions
 {

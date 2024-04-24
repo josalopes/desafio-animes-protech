@@ -11,6 +11,13 @@
             <param name="animeParameters"></param>
             <returns></returns>
         </member>
+        <member name="M:Api.Controllers.AnimeController.GetAnime(System.Guid)">
+            <summary>
+            Obtem um Anime pelo Id
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
         <member name="M:Api.Controllers.AnimeController.GetAnimesByName(Domain.RequestFeatures.AnimeParameters,System.String)">
             <summary>
             Retorna uma lista de Animes filtrada por um valor da propriedde Nome
@@ -33,13 +40,6 @@
             </summary>
             <param name="animeParameters"></param>
             <param name="word"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Api.Controllers.AnimeController.GetAnime(System.Guid)">
-            <summary>
-            Obtem um Anime pelo Id
-            </summary>
-            <param name="Id"></param>
             <returns></returns>
         </member>
         <member name="M:Api.Controllers.AnimeController.CreateAnime(Domain.Dto.AnimeForCreationDto)">

@@ -1,6 +1,7 @@
-﻿using Domain.Dto;
+﻿using Microsoft.AspNetCore.Mvc;
+
+using Domain.Dto;
 using Domain.Interfaces.Services;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
 {

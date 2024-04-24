@@ -1,6 +1,7 @@
-﻿using Entities.Models;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+
+using Entities.Models;
 
 namespace Infrastructure.Repositories
 {
