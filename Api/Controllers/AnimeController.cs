@@ -1,6 +1,7 @@
 ﻿using Domain.Dto;
 using Domain.Interfaces.Services;
 using Domain.RequestFeatures;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 
@@ -25,6 +26,7 @@ namespace Api.Controllers
         /// <param name="animeParameters"></param>
         /// <returns></returns>
         [HttpGet]
+        [Authorize]
         public IActionResult GetAnimes([FromQuery] AnimeParameters animeParameters)
         {
             var pagedResult = _service.AnimeService.GetAllAnimes(animeParameters, trackChanges: false);
