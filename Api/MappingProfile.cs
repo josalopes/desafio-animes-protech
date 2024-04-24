@@ -11,6 +11,7 @@ namespace Api
             CreateMap<Anime , AnimeDto> ();
             CreateMap<AnimeForUpdateDto, Anime>();
             CreateMap<AnimeForCreationDto, Anime>();
+            CreateMap<UserForRegistrationDto, User>();
         } 
 
     }

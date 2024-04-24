@@ -1,23 +1,29 @@
 ﻿using AutoMapper;
+using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Entities.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 
 namespace Domain.Services
 {
     public sealed class ServiceManager : IServiceManager
     {
         private readonly Lazy<IAnimeService> _animeService;
+        private readonly Lazy<IAuthenticationService> _authenticationService;
 
-        public ServiceManager(Interfaces.Repositories.IRepositoryManager repositoryManager, ILoggerManager logger, IMapper mapper)
+        public ServiceManager(IRepositoryManager repositoryManager, 
+            ILoggerManager logger, 
+            IMapper mapper,
+            UserManager<User> userManager,
+            IConfiguration configuration)
         {
             _animeService = new Lazy<IAnimeService>(() => new AnimeService(repositoryManager, logger, mapper));
+            _authenticationService = new Lazy<IAuthenticationService>(() => new AuthenticationService(logger, mapper, userManager, configuration));
         }
 
         public IAnimeService AnimeService => _animeService.Value;
+        public IAuthenticationService AuthenticationService => _authenticationService.Value;
 
     }
 }
