@@ -1,0 +1,272 @@
+{
+	"info": {
+		"_postman_id": "724abe8f-48a7-4dff-a691-14b67ccd67fe",
+		"name": "animes-protech",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3543043"
+	},
+	"item": [
+		{
+			"name": "animes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7036/api/animes?PageNUmber=3&PageSize=2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7036",
+					"path": [
+						"api",
+						"animes"
+					],
+					"query": [
+						{
+							"key": "PageNUmber",
+							"value": "3"
+						},
+						{
+							"key": "PageSize",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "anime por Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7036/api/animes/0f2249b6-c358-4000-9a37-a5bafde8d662",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7036",
+					"path": [
+						"api",
+						"animes",
+						"0f2249b6-c358-4000-9a37-a5bafde8d662"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "animes filtrados por Nome",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7036/api/animes/name?name=chihiro",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7036",
+					"path": [
+						"api",
+						"animes",
+						"name"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "chihiro"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "animes filtrados por Diretor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7036/api/animes/director?director=mamoru",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7036",
+					"path": [
+						"api",
+						"animes",
+						"director"
+					],
+					"query": [
+						{
+							"key": "director",
+							"value": "mamoru"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "animes filtrados por texto contido no Resumo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7036/api/animes/summary?word=longa de animação",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7036",
+					"path": [
+						"api",
+						"animes",
+						"summary"
+					],
+					"query": [
+						{
+							"key": "word",
+							"value": "longa de animação"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cria um anime",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Protech Solutions\",\r\n    \"diretor\": \"Nathalia\",\r\n    \"resumo\": \"Desenvolvendo softwares com qualidade\",\r\n    \"ativo\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7036/api/animes",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7036",
+					"path": [
+						"api",
+						"animes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualiza um anime",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Inventione\",\r\n    \"diretor\": \"Hermeval\",\r\n    \"resumo\": \"Plataforma de filas digitais\",\r\n    \"ativo\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7036/api/animes/0a6e12fe-7a8d-4ee1-8715-574bba76daa5",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7036",
+					"path": [
+						"api",
+						"animes",
+						"0a6e12fe-7a8d-4ee1-8715-574bba76daa5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deleta um anime",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7036/api/animes/0a6e12fe-7a8d-4ee1-8715-574bba76daa5",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7036",
+					"path": [
+						"api",
+						"animes",
+						"0a6e12fe-7a8d-4ee1-8715-574bba76daa5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registra usuário",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7036/api/authentication",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7036",
+					"path": [
+						"api",
+						"authentication"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Efetua login de usuário",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7036/api/authentication/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7036",
+					"path": [
+						"api",
+						"authentication",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
