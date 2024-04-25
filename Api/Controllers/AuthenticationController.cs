@@ -15,8 +15,24 @@ namespace Api.Controllers
             _service = service;
         }
 
+        /// <summary>
+        /// Cria um novo usuário
+        /// </summary>
+        /// <remarks>
+        ///     POST api/authentication
+        ///         {
+        ///             "firstname": "",
+        ///             "lastname": "",
+        ///             "username": "jose",
+        ///             "password": "1234567890",
+        ///             "email": "jose@exemplo.com",
+        ///             "phonenumber": "123456789",
+        ///             "Roles": ["Administrator", "Manager"]
+        ///         }
+        /// </remarks>
+        /// <param name="userForRegistration"></param>
+        /// <returns></returns>
         [HttpPost]
-        //[ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> RegisterUser([FromBody] UserForRegistrationDto userForRegistration)
         {
             var result = await _service.AuthenticationService.RegisterUser(userForRegistration);
@@ -32,6 +48,18 @@ namespace Api.Controllers
             return StatusCode(201);
         }
 
+        /// <summary>
+        /// Efetua login de usuário e retorna seu token de autenticação
+        /// </summary>
+        /// <remarks>
+        /// POST api/authentication/login
+        ///     {
+        ///         "username": "jose",
+        ///         "password": "1234567890"
+        ///     }
+        /// </remarks>
+        /// <param name="user"></param>
+        /// <returns></returns>
         [HttpPost("login")]
         public async Task<IActionResult> Authenticate([FromBody] UserForAuthenticationDto user)
         {
