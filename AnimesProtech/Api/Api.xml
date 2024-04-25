@@ -53,7 +53,7 @@
                  {
                     "nome": "Kimi No Na Wa",
                     "diretor": "Makoto Shinkai",
-                    "resumo": "Vencedor de vários prêmios, dentre os quais o Japan Awards, Your Name conta a história de Mitsuha, uma garota que vive no campo e deseja conhecer Tóquio, e Taki, um garoto qu vive na capital. Certo dia, Mitsuha leva seu desejo a um templo religioso. E é atendida. Ela acorda no corpo de Taki, e ele no corpo dela!",
+                    "resumo": "Vencedor de vários prêmios, dentre os quais o Japan Awards.",
                     "ativo": true
                  }
             
@@ -77,6 +77,39 @@
             Efetua a exclusão lógica de um Anime (Ativo = false)
             </summary>
             <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthenticationController.RegisterUser(Domain.Dto.UserForRegistrationDto)">
+            <summary>
+            Cria um novo usuário
+            </summary>
+            <remarks>
+                POST api/authentication
+                    {
+                        "firstname": "",
+                        "lastname": "",
+                        "username": "jose",
+                        "password": "1234567890",
+                        "email": "jose@exemplo.com",
+                        "phonenumber": "123456789",
+                        "Roles": ["Administrator", "Manager"]
+                    }
+            </remarks>
+            <param name="userForRegistration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthenticationController.Authenticate(Domain.Dto.UserForAuthenticationDto)">
+            <summary>
+            Efetua login de usuário e retorna seu token de autenticação
+            </summary>
+            <remarks>
+            POST api/authentication/login
+                {
+                    "username": "jose",
+                    "password": "1234567890"
+                }
+            </remarks>
+            <param name="user"></param>
             <returns></returns>
         </member>
         <member name="T:Api.Migrations.DatabaseCreation">
