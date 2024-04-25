@@ -120,7 +120,7 @@ namespace Api.Controllers
         ///     {
         ///        "nome": "Kimi No Na Wa",
         ///        "diretor": "Makoto Shinkai",
-        ///        "resumo": "Vencedor de vários prêmios, dentre os quais o Japan Awards, Your Name conta a história de Mitsuha, uma garota que vive no campo e deseja conhecer Tóquio, e Taki, um garoto qu vive na capital. Certo dia, Mitsuha leva seu desejo a um templo religioso. E é atendida. Ela acorda no corpo de Taki, e ele no corpo dela!",
+        ///        "resumo": "Vencedor de vários prêmios, dentre os quais o Japan Awards.",
         ///        "ativo": true
         ///     }
         ///
